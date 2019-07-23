@@ -22,14 +22,13 @@ function createCard(stringData) {
     console.log(parts);
     parts.forEach(function (elem) {
         if (elem != "") {
+            console.log("elem: ", elem);
             let separationIndex = elem.indexOf(":");
-            let readClass = ".item-" + elem.substring(0, separationIndex);
-
+            let readClass = ".card-" + elem.substring(0, separationIndex);
+            console.log("readClass: ", readClass);
             let field = card.querySelector(readClass);
-            field.value = elem.substring(separationIndex + 1);
-            if (field.oninput) {
-                field.oninput.apply(field);
-            }
+            console.log("field: ", field);
+            field.innerText = elem.substring(separationIndex + 1);
         }
     });
 }
@@ -40,7 +39,7 @@ function loadCard() {
         let files = fileSelector.files;
         let reader = new FileReader();
         console.log(files);
-        for (var i = 0; i < files.length; i++) {
+        for (let i = 0; i < files.length; i++) {
             reader.readAsText(files[i], "UTF-8");
             reader.onload = function (evt) {
                 createCard(evt.target.result);
@@ -51,16 +50,18 @@ function loadCard() {
 }
 
 function exportCard(item) {
-    let title = item.querySelector(".item-title").value;
-    let level = item.querySelector(".item-level").value;
-    let tags = item.querySelector(".item-tags").value;
-    let meta = item.querySelector(".item-meta-data").value;
-    let description = item.querySelector(".item-description").value;
+    startEditing(item);
+    let title = item.querySelector(".card-title").innerText;
+    let level = item.querySelector(".card-level").innerText;
+    let tags = item.querySelector(".card-tags").innerText;
+    let meta = item.querySelector(".card-meta-data").innerText;
+    let description = item.querySelector(".card-description").innerText;
     download(title + ".dat", "@title:" + title +
         "@level:" + level +
         "@tags:" + tags +
         "@meta-data:" + meta +
         "@description:" + description);
+    stopEditing(item);
 }
 
 function download(filename, text) {

@@ -12,10 +12,11 @@ body {
 div.textfield {
     padding: 5px;
     overflow: auto;
-    white-space: nowrap;
+    white-space: break-spaces;
 }
 
 #cardcontainer {
+    width: 100%;
     display: grid;
     grid-gap: 50px;
     grid-template-columns: auto auto;
@@ -58,14 +59,19 @@ div.textfield {
 }
 
 .card {
-    position: relative;
-    width: 100%;
+    flex-shrink: 0;
+    flex-grow: 0;
     border: 1px solid black;
 }
 
 .card-row {
     display: flex;
     width: 100%;
+}
+
+.card-description {
+    width: 100%;
+
 }
 
 .card-level-label {
@@ -105,6 +111,10 @@ div.textfield {
 @media print {
     button {
         display: none;
+    }
+
+    .card {
+        page-break-after: auto;
     }
 
     .card-toolbar {
