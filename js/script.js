@@ -75,3 +75,31 @@ function download(filename, text) {
 
     document.body.removeChild(element);
 }
+
+function startEditing(elem) {
+    let text = elem.innerHTML;
+    //text = revertFormatting(text, "div", "<br>");
+    text = revertFormatting(text, "b", "*");
+    text = revertFormatting(text, "i", "_");
+    elem.innerHTML = text;
+}
+
+function stopEditing(elem) {
+    formatInput(elem);
+}
+
+function revertFormatting(text, tag, placeholder) {
+    let re = new RegExp("</{0,1}" + tag + ">", "gm");
+    return text.split(re).reduce((a,b) => a + placeholder + b);
+}
+
+function applyFormatting(text, search, tag) {
+    return text.split(search).reduce((a, b, i) => i % 2 == 0 ? a + "</" + tag + "> " + b : a + "<" + tag + ">" + b);
+}
+
+function formatInput(elem) {
+    let text = elem.innerHTML;
+    text = applyFormatting(text, "*", "b");
+    text = applyFormatting(text, "_", "i");
+    elem.innerHTML = text;
+}

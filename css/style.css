@@ -1,46 +1,66 @@
 /* Colors
 As hex codes */
-.color-primary-0 { color: #FFC858 }
-.color-primary-1 { color: #FFFBF3 }
-.color-primary-2 { color: #FFDE9A }
-.color-primary-3 { color: #FFB419 }
-.color-primary-4 { color: #FFAB00 }
+.color-normal { background-color: #90ee90; }
+.color-dark { background-color: #1aa51a; }
+.color-light {background-color: #a7f1a7; }
+.color-very-light { background-color: #d3f8d3; }
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div.textfield {
+    padding: 5px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+#cardcontainer {
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: auto auto;
+}
 
 #cardprototype {
     display: none;
 }
 
-input, textarea {
-    border-radius: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+#fileSelector {
+    display: none;
 }
 
-input.item-title {
-    width: auto;
+.card-title {
     flex: 2;
     text-transform: uppercase;
 }
 
-input.item-level {
-    flex-shrink: 2;
-    flex-basis: auto;
-    width: 3em;
+.card-infobar {
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.card-level {
     text-align: right;
 }
 
-textarea.item-meta-data {
-    flex: 2;
+.card-tags {
+    text-align: center;
+    z-index: 5;
+    margin-left: -0.5em;
+    border-radius: 5px;
+    background-color: #a7f1a7;
+    border: 1px solid #1aa51a;
+    box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.2), 0 4px 2px 0 rgba(0, 0, 0, 0.19);
 }
 
-textarea.item-tags {
-    text-align: center;
+.card-meta-data {
+    flex: 2;
 }
 
 .card {
     position: relative;
     width: 100%;
+    border: 1px solid black;
 }
 
 .card-row {
@@ -48,109 +68,46 @@ textarea.item-tags {
     width: 100%;
 }
 
-#cardcontainer {
-    display: grid;
-    grid-column-gap: 50px;
-    grid-row-gap: 50px;
-}
-
-#fileSelector {
-    display: none;
+.card-level-label {
+    border-width: 0;
+    padding: 5px;
 }
 
 @media screen {
-
     button {
         border-width: 0;
-        background-color: #FFC858;
+        background-color: #90ee90;
     }
     button:hover {
-        background-color: #FFAB00;
+        background-color: #d3f8d3;
     }
 
     button.remove-card {
-        background-color: red !important;
+        background-color: #ee9090 !important;
+    }
+
+    button.remove-card:hover {
+        background-color: #f8d3d3 !important;
     }
 
     button.export-card {
-        background-color: yellow !important;
-    }
-
-    textarea {
-        resize: none;
-    }
-
-    textarea.item-description {
-        width: 100%;
-    }
-
-    #cardcontainer {
-
-        grid-template-columns: auto auto auto auto;
     }
 
     .card {
-        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.2), 0 4px 2px 0 rgba(0, 0, 0, 0.19);
     }
 
     .card-toolbar {
         background-color: black;
     }
-    
-    .item-label {
-        display: none;
-    }
 }
 
 @media print {
-    body {
-        font-family: cursive;
-    }
-
     button {
         display: none;
-    }
-    input, textarea {
-        overflow: hidden;
-        border-width: 0;
-        resize: none;
-        font-family: cursive;
-    }
-
-    textarea.item-description {
-        width: 100%;
-    }
-
-    textarea.item-tags {
-        z-index: 5;
-        margin-left: -0.5em;
-        border-radius: 5px;
-        background-color: lightgreen;
-        border: 1px solid black;
-        box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.2), 0 4px 2px 0 rgba(0, 0, 0, 0.19);
-    }
-
-    #cardcontainer {
-        grid-template-columns: auto auto;
-    }
-
-    .card {
-        border: 1px solid black;
     }
 
     .card-toolbar {
         display: none;
-    }
-
-    .card-row{
-    }
-
-    .card-infobar {
-        border-bottom: 1px solid black;
-        border-top: 1px solid black;
-    }
-
-    .item-label {
-        border-width: 0;
     }
 }
