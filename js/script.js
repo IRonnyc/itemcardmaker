@@ -37,9 +37,9 @@ function loadCard() {
     let fileSelector = document.getElementById("fileSelector");
     fileSelector.onchange = function() {
         let files = fileSelector.files;
-        let reader = new FileReader();
         console.log(files);
         for (let i = 0; i < files.length; i++) {
+            let reader = new FileReader();
             reader.readAsText(files[i], "UTF-8");
             reader.onload = function (evt) {
                 createCard(evt.target.result);
