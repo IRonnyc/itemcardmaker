@@ -32,7 +32,8 @@ div.textfield {
 
 .card-title {
     flex: 2;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
+    font-variant: small-caps;
 }
 
 .card-infobar {

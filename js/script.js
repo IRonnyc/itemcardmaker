@@ -5,10 +5,12 @@ function addCard() {
     let clone = prototype.cloneNode(true);
     clone.removeAttribute("id");
     // wire up remove button
+    console.log(clone.querySelector(".remove-card"));
     clone.querySelector(".remove-card").onclick = function() {removeCard(clone);};
     clone.querySelector(".export-card").onclick = function() {exportCard(clone);};
 
     container.appendChild(clone);
+    console.log("created card");
     return clone;
 }
 
@@ -18,6 +20,7 @@ function removeCard(item) {
 
 function createCard(stringData) {
     let card = addCard();
+    console.log(card.querySelector(".remove-card").onclick.toString());
     let parts = stringData.split("@");
     console.log(parts);
     parts.forEach(function (elem) {
@@ -29,8 +32,14 @@ function createCard(stringData) {
             let field = card.querySelector(readClass);
             console.log("field: ", field);
             field.innerText = elem.substring(separationIndex + 1);
+
+            if (readClass == ".card-tags") {
+                stopEditingTags(field);
+            }
+            stopEditing(field);
         }
     });
+    console.log(card.querySelector(".remove-card").onclick.toString());
 }
 
 function loadCard() {
@@ -53,7 +62,10 @@ function exportCard(item) {
     startEditing(item);
     let title = item.querySelector(".card-title").innerText;
     let level = item.querySelector(".card-level").innerText;
-    let tags = item.querySelector(".card-tags").innerText;
+    let tagsElem = item.querySelector(".card-tags");
+    startEditingTags(tagsElem);
+    let tags = tagsElem.innerText.trim();
+    stopEditingTags(tagsElem);
     let meta = item.querySelector(".card-meta-data").innerText;
     let description = item.querySelector(".card-description").innerText;
     download(title + ".dat", "@title:" + title +
