@@ -79,7 +79,6 @@ function download(filename, text) {
 
 function startEditing(elem) {
     let text = elem.innerHTML;
-    //text = revertFormatting(text, "div", "<br>");
     text = revertFormatting(text, "b", "*");
     text = revertFormatting(text, "i", "_");
     elem.innerHTML = text;
@@ -87,6 +86,32 @@ function startEditing(elem) {
 
 function stopEditing(elem) {
     formatInput(elem);
+}
+
+function startEditingTags(elem) {
+    let children = elem.children;
+    console.log(children);
+    let text = "";
+    for (let i = 0; i < children.length; i++) {
+        console.log(children[i]);
+        text += children[i].innerHTML;
+        if (i < children.length -1) {
+            text += ", ";
+        }
+    }
+
+    elem.innerHTML = text;
+}
+
+function stopEditingTags(elem) {
+    let tags = elem.innerHTML.split(",");
+    let html = "";
+
+    tags.forEach(function(e) {
+        html += "<div class=\"trait\">" + e.trim() + "</div>";
+    });
+
+    elem.innerHTML = html;
 }
 
 function revertFormatting(text, tag, placeholder) {

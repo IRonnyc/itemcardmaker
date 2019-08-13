@@ -37,7 +37,7 @@ div.textfield {
 
 .card-infobar {
     border-bottom: 1px solid black;
-    border-top: 1px solid black;
+    /*border-top: 1px solid black;*/
 }
 
 .card-level {
@@ -45,13 +45,12 @@ div.textfield {
 }
 
 .card-tags {
-    text-align: center;
-    z-index: 5;
-    margin-left: -0.5em;
+    /*margin-left: -0.5em;
     border-radius: 5px;
+    z-index: 5;
     background-color: #a7f1a7;
     border: 1px solid #1aa51a;
-    box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.2), 0 4px 2px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.2), 0 4px 2px 0 rgba(0, 0, 0, 0.19);*/
 }
 
 .card-meta-data {
@@ -77,6 +76,13 @@ div.textfield {
 .card-level-label {
     border-width: 0;
     padding: 5px;
+}
+
+.trait {
+    border: 1px solid black;
+    margin: 3px;
+    padding: 2px;
+    background-color: #a7f1a7;
 }
 
 @media screen {
