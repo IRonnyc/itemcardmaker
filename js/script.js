@@ -5,7 +5,6 @@ function addCard() {
     let clone = prototype.cloneNode(true);
     clone.removeAttribute("id");
     // wire up remove button
-    console.log(clone.querySelector(".remove-card"));
     clone.querySelector(".remove-card").onclick = function() {removeCard(clone);};
     clone.querySelector(".export-card").onclick = function() {exportCard(clone);};
 
@@ -20,7 +19,6 @@ function removeCard(item) {
 
 function createCard(stringData) {
     let card = addCard();
-    console.log(card.querySelector(".remove-card").onclick.toString());
     let parts = stringData.split("@");
     console.log(parts);
     parts.forEach(function (elem) {
@@ -39,7 +37,6 @@ function createCard(stringData) {
             stopEditing(field);
         }
     });
-    console.log(card.querySelector(".remove-card").onclick.toString());
 }
 
 function loadCard() {
