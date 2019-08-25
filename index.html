@@ -14,6 +14,18 @@
     <button id="addcard" onclick="addCard()">Add new Card</button>
     <button id="loadcard" onclick="loadCard()">Load Card</button>
     <input type="file" id="fileSelector" multiple="multiple">
+    <div id="help" onclick="togglePopup(this, '#help-text')"><button>Show Help</button>
+        <span id="help-text">
+<h3><b>Bold font:</b></h3> *bold*<br>
+<h3><i>Italic font:</i></h3> _italic_<br>
+<h3>Tags:</h3> separate by commas: tag1, tag2, tag3<br>
+<h3>Tables:</h3><br>
+small inventory table: {Sinventory}<br>
+medium inventory table: {Minventory}<br>
+large inventory table: {Linventory}<br>
+extra large inventory table: {XLinventory}<br>
+        </span>
+    </div>
 </div>
 <div id="cardcontainer">
     <div id="cardprototype" class="card">

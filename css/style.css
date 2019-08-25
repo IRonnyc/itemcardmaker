@@ -79,6 +79,42 @@ div.textfield {
     padding: 5px;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+
+table.inventory-small th:last-child, table.inventory-small td:last-child,
+table.inventory th:last-child, table.inventory td:last-child,
+table.inventory-large th:last-child, table.inventory-large td:last-child,
+table.inventory-extra-large th:last-child, table.inventory-extra-large td:last-child {
+    width: 3em;
+}
+table.inventory-small td {
+    height: 10em;
+}
+
+table.inventory td {
+    height: 20em;
+}
+
+table.inventory-large td {
+    height: 30em;
+}
+
+table.inventory-extra-large td {
+    height: 40em;
+}
+
+.filler-cell {
+    width: 100%;
+}
+
 .trait {
     border: 1px solid black;
     margin: 3px;
@@ -113,9 +149,53 @@ div.textfield {
     .card-toolbar {
         background-color: black;
     }
+
+    #help {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    #help #help-text {
+        visibility: hidden;
+        width: max-content;
+        background-color: #1aa51a;
+        color: #fff;
+        border-radius: 6px;
+        padding: 8px 0;
+        position: absolute;
+        z-index: 1;
+        top: 125%;
+        margin-left: -80px;
+    }
+
+    #help #help-text::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 10%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent black transparent;
+    }
+
+    #help .show {
+        visibility: visible !important;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity:1 ;}
+    }
 }
 
 @media print {
+    body {
+        font-size: 11pt;
+    }
     button {
         display: none;
     }
@@ -124,7 +204,7 @@ div.textfield {
         page-break-after: auto;
     }
 
-    .card-toolbar {
+    .card-toolbar, #help {
         display: none;
     }
 }
