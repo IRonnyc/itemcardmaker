@@ -56,21 +56,31 @@ function loadCard() {
 }
 
 function exportCard(item) {
-    startEditing(item);
-    let title = item.querySelector(".card-title").innerText;
-    let level = item.querySelector(".card-level").innerText;
-    let tagsElem = item.querySelector(".card-tags");
-    startEditingTags(tagsElem);
-    let tags = tagsElem.innerText.trim();
-    stopEditingTags(tagsElem);
-    let meta = item.querySelector(".card-meta-data").innerText;
-    let description = item.querySelector(".card-description").innerText;
+    /**
+     * Extracts the data from the selected element, applying before beforehand and after afterwards
+     * @param selector selector for the element to extract data from
+     * @param before applied before extracting data
+     * @param after applied after extracting data, to revert the element to its olf state
+     * @returns {string} the extracted data
+     */
+    let extractDataThrough = function(selector, before, after) {
+        let elem = item.querySelector(selector);
+        before(elem);
+        let innerText = elem.innerText;
+        after(elem);
+        return innerText;
+    };
+    let title = extractDataThrough(".card-title", startEditing, stopEditing);
+    let level = extractDataThrough(".card-level", startEditing, stopEditing);
+    let tags = extractDataThrough(".card-tags", startEditingTags, stopEditingTags);
+    let meta = extractDataThrough(".card-meta-data", startEditing, stopEditing);
+    let description = extractDataThrough(".card-description", startEditing, stopEditing);
+
     download(title + ".dat", "@title:" + title +
         "@level:" + level +
         "@tags:" + tags +
         "@meta-data:" + meta +
         "@description:" + description);
-    stopEditing(item);
 }
 
 function download(filename, text) {
@@ -98,6 +108,7 @@ function stopEditing(elem) {
 }
 
 function startEditingTags(elem) {
+    startEditing(elem);
     let children = elem.children;
     console.log(children);
     let text = "";
@@ -121,6 +132,7 @@ function stopEditingTags(elem) {
     });
 
     elem.innerHTML = html;
+    stopEditing(elem);
 }
 
 function revertFormatting(text, tag, placeholder) {
