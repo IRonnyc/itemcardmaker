@@ -129,12 +129,29 @@ function startEditingTags(elem) {
     elem.innerHTML = text;
 }
 
+// Make the first characters upper case, because the traits are being normalized.
+let specialTagClasses = new Map ([
+    ['Uncommon', 'rarity-uncommon'],
+    ['Rare', 'rarity-rare'],
+    ['Unique', 'rarity-unique']
+]);
 function stopEditingTags(elem) {
     let tags = elem.innerHTML.split(",");
     let html = "";
 
     tags.forEach(function(e) {
-        html += "<div class=\"trait\">" + e.trim() + "</div>";
+        let traitName = e.trim().toLowerCase();
+        traitName = traitName.charAt(0).toUpperCase() + traitName.slice(1);
+        let classes = ["trait"];
+
+        for (let key of specialTagClasses.keys()) {
+            if (traitName == key) {
+                classes.push(specialTagClasses.get(key));
+                break;
+            }
+        }
+
+        html += "<div class=\"" + classes.join(" ") + "\">" + traitName + "</div>";
     });
 
     elem.innerHTML = html;
@@ -151,7 +168,7 @@ function echoAndReturn(prefix, p) {
     return p;
 }
 function applyFormatting(text, search, tag) {
-    return text.split(search).reduce((a, b, i) => i % 2 == 0 ? a + "</" + tag + "> " + b : a + "<" + tag + ">" + b);
+    return text.split(search).reduce((a, b, i) => i % 2 == 0 ? a + "</" + tag + ">" + b : a + "<" + tag + ">" + b);
 }
 
 const S_INVENTORY = "<table class=\"inventory-small\"><thead><tr><th>Item</th><th>Bulk</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table>";

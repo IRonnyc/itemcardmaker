@@ -46,6 +46,7 @@ div.textfield {
 }
 
 .card-tags {
+    font-variant: small-caps;
     /*margin-left: -0.5em;
     border-radius: 5px;
     z-index: 5;
@@ -120,6 +121,16 @@ table.inventory-extra-large td {
     margin: 3px;
     padding: 2px;
     background-color: #a7f1a7;
+}
+
+.rarity-uncommon {
+    background-color: #ffa500 !important;
+}
+.rarity-rare {
+    background-color: #9090ee !important;
+}
+.rarity-unique {
+    background-color: #ed91ed !important;
 }
 
 @media screen {

@@ -11,7 +11,7 @@
 <body>
 
 <div id="toolbar">
-    <button id="addcard" onclick="addCard()">Add new Card</button>
+    <button id="addcard" onclick="addCard()">Add New Card</button>
     <button id="loadcard" onclick="loadCard()">Load Card</button>
     <input type="file" id="fileSelector" multiple="multiple">
     <div id="help" onclick="togglePopup(this, '#help-text')"><button>Show Help</button>
@@ -30,8 +30,8 @@ extra large inventory table: {XLinventory}<br>
 <div id="cardcontainer">
     <div id="cardprototype" class="card">
         <div class="card-toolbar card-row">
-            <button class="remove-card">remove</button>
-            <button class="export-card">export</button>
+            <button class="remove-card">Remove</button>
+            <button class="export-card">Export</button>
         </div>
         <div class="card-row">
             <div class="card-title textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)">CARD TITLE</div>
@@ -39,18 +39,13 @@ extra large inventory table: {XLinventory}<br>
             <div class="card-level textfield" contenteditable="true" onfocus="startEditing(this)" onblur="formatInput(this)">1+</div>
         </div>
         <div class="card-row card-tags" contenteditable="true" onfocus="startEditingTags(this)" onblur="stopEditingTags(this)">
-            <div class="trait">magical</div>
+            <div class="trait">Magical</div>
         </div>
         <div class="card-row card-infobar">
-            <div class="card-meta-data textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)">
-                <b>Activation:</b> 1 Operate Activation<br />
-                <b>Bulk:</b> 1
-            </div>
+            <div class="card-meta-data textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)"><b>Activation:</b> 1 Operate Activation <b>Bulk:</b> 1</div>
         </div>
         <div class="card-row">
-            <div class="card-description textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)">
-                Beschreibung der Karte
-            </div>
+            <div class="card-description textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)">Beschreibung der Karte</div>
         </div>
     </div>
 </div>
