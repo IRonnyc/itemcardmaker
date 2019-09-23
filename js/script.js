@@ -5,16 +5,56 @@ function addCard() {
     let clone = prototype.cloneNode(true);
     clone.removeAttribute("id");
     // wire up remove button
-    clone.querySelector(".remove-card").onclick = function() {removeCard(clone);};
-    clone.querySelector(".export-card").onclick = function() {exportCard(clone);};
+    wireCardButtons(clone);
 
     container.appendChild(clone);
     console.log("created card");
     return clone;
 }
 
+function wireCardButtons(card) {
+    card.querySelector(".remove-card").onclick = function() {removeCard(card);};
+    card.querySelector(".export-card").onclick = function() {exportCard(card);};
+    card.querySelector(".clone-card").onclick = function() {cloneCard(card);};
+
+}
+
 function removeCard(item) {
     item.remove();
+}
+
+function exportCard(item) {
+    /**
+     * Extracts the data from the selected element, applying before beforehand and after afterwards
+     * @param selector selector for the element to extract data from
+     * @param before applied before extracting data
+     * @param after applied after extracting data, to revert the element to its olf state
+     * @returns {string} the extracted data
+     */
+    let extractDataThrough = function(selector, before, after) {
+        let elem = item.querySelector(selector);
+        before(elem);
+        let innerText = elem.innerText;
+        after(elem);
+        return innerText;
+    };
+    let title = extractDataThrough(".card-title", startEditing, stopEditing);
+    let level = extractDataThrough(".card-level", startEditing, stopEditing);
+    let tags = extractDataThrough(".card-tags", startEditingTags, stopEditingTags);
+    let meta = extractDataThrough(".card-meta-data", startEditing, stopEditing);
+    let description = extractDataThrough(".card-description", startEditing, stopEditing);
+
+    download(title + ".dat", "@title:" + title +
+        "@level:" + level +
+        "@tags:" + tags +
+        "@meta-data:" + meta +
+        "@description:" + description);
+}
+
+function cloneCard(item) {
+    let clone = item.cloneNode(true);
+    wireCardButtons(clone);
+    item.parentNode.appendChild(clone);
 }
 
 function createCard(stringData) {
@@ -53,34 +93,6 @@ function loadCard() {
         }
     };
     fileSelector.click();
-}
-
-function exportCard(item) {
-    /**
-     * Extracts the data from the selected element, applying before beforehand and after afterwards
-     * @param selector selector for the element to extract data from
-     * @param before applied before extracting data
-     * @param after applied after extracting data, to revert the element to its olf state
-     * @returns {string} the extracted data
-     */
-    let extractDataThrough = function(selector, before, after) {
-        let elem = item.querySelector(selector);
-        before(elem);
-        let innerText = elem.innerText;
-        after(elem);
-        return innerText;
-    };
-    let title = extractDataThrough(".card-title", startEditing, stopEditing);
-    let level = extractDataThrough(".card-level", startEditing, stopEditing);
-    let tags = extractDataThrough(".card-tags", startEditingTags, stopEditingTags);
-    let meta = extractDataThrough(".card-meta-data", startEditing, stopEditing);
-    let description = extractDataThrough(".card-description", startEditing, stopEditing);
-
-    download(title + ".dat", "@title:" + title +
-        "@level:" + level +
-        "@tags:" + tags +
-        "@meta-data:" + meta +
-        "@description:" + description);
 }
 
 function download(filename, text) {
