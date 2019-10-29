@@ -1,9 +1,15 @@
+
+function getSysteme() {
+    return document.getElementById("systemselector").value;
+}
+
 function addCard() {
     let container = document.getElementById("cardcontainer");
 
-    let prototype = document.getElementById("cardprototype");
+    let prototype = document.getElementById("cardprototype-" + getSysteme());
     let clone = prototype.cloneNode(true);
     clone.removeAttribute("id");
+    clone.classList.remove("prototype");
     // wire up remove button
     wireCardButtons(clone);
 
@@ -33,6 +39,9 @@ function exportCard(item) {
      */
     let extractDataThrough = function(selector, before, after) {
         let elem = item.querySelector(selector);
+        if (elem == undefined) {
+            return "";
+        }
         before(elem);
         let innerText = elem.innerText;
         after(elem);
@@ -69,12 +78,14 @@ function createCard(stringData) {
             console.log("readClass: ", readClass);
             let field = card.querySelector(readClass);
             console.log("field: ", field);
-            field.innerText = elem.substring(separationIndex + 1);
+            if (field != undefined) {
+                field.innerText = elem.substring(separationIndex + 1);
 
-            if (readClass == ".card-tags") {
-                stopEditingTags(field);
+                if (readClass == ".card-tags") {
+                    stopEditingTags(field);
+                }
+                stopEditing(field);
             }
-            stopEditing(field);
         }
     });
 }
@@ -111,7 +122,10 @@ function download(filename, text) {
 function startEditing(elem) {
     let text = elem.innerHTML;
     text = revertFormatting(text, "b", "*");
+    text = revertFormatting(text, "del", "~");
     text = revertFormatting(text, "i", "_");
+    text = revertFormatting(text, "sub", "§");
+    text = revertFormatting(text, "sup", "^");
 
     text = text.replace(S_INVENTORY, "{Sinventory}");
     text = text.replace(M_INVENTORY, "{Minventory}");
@@ -152,8 +166,11 @@ function stopEditingTags(elem) {
     let html = "";
 
     tags.forEach(function(e) {
-        let traitName = e.trim().toLowerCase();
-        traitName = traitName.charAt(0).toUpperCase() + traitName.slice(1);
+        let traitName = e.trim();
+
+        if (elem.parentElement.classList.contains("pf2")) {
+            traitName = traitName.charAt(0).toUpperCase() + traitName.slice(1);
+        }
         let classes = ["trait"];
 
         for (let key of specialTagClasses.keys()) {
@@ -190,13 +207,17 @@ const XL_INVENTORY = "<table class=\"inventory-extra-large\"><thead><tr><th>Item
 
 function formatInput(elem) {
     let text = elem.innerHTML;
-    text = applyFormatting(text, "*", "b");
-    text = applyFormatting(text, "_", "i");
 
     text = text.replace("{Sinventory}", S_INVENTORY);
     text = text.replace("{Minventory}", M_INVENTORY);
     text = text.replace("{Linventory}", L_INVENTORY);
     text = text.replace("{XLinventory}", XL_INVENTORY);
+
+    text = applyFormatting(text, "*", "b");
+    text = applyFormatting(text, "~", "del");
+    text = applyFormatting(text, "_", "i");
+    text = applyFormatting(text, "§", "sub");
+    text = applyFormatting(text, "^", "sup");
 
     elem.innerHTML = text;
 }

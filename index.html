@@ -18,6 +18,9 @@
         <span id="help-text">
 <h3><b>Bold font:</b></h3> *bold*<br>
 <h3><i>Italic font:</i></h3> _italic_<br>
+<h3><del>Crossed out font:</del> ~crossed out~</h3>
+<h3><sup>Superscribed font:</sup> ^superscribed^</h3>
+<h3><sub>Subscribed font:</sub> §superscribed§</h3>
 <h3>Tags:</h3> separate by commas: tag1, tag2, tag3<br>
 <h3>Tables:</h3><br>
 small inventory table: {Sinventory}<br>
@@ -26,9 +29,13 @@ large inventory table: {Linventory}<br>
 extra large inventory table: {XLinventory}<br>
         </span>
     </div>
+    <select id="systemselector">
+        <option value="dd5">D&D 5e</option>
+        <option value="pf2">Pathfinder 2e</option>
+    </select>
 </div>
 <div id="cardcontainer">
-    <div id="cardprototype" class="card">
+    <div id="cardprototype-dd5" class="card dd5 prototype">
         <div class="card-toolbar card-row">
             <button class="remove-card">Remove</button>
             <button class="export-card">Export</button>
@@ -36,14 +43,32 @@ extra large inventory table: {XLinventory}<br>
         </div>
         <div class="card-row">
             <div class="card-title textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)">CARD TITLE</div>
-            <div class="card-level-label">ITEM</div>
+        </div>
+        <div class="card-row card-tags textfield" contenteditable="true" onfocus="startEditingTags(this)" onblur="stopEditingTags(this)">
+            <div class="trait">Wonderous item</div><div class="trait">rare</div>
+        </div>
+        <hr>
+        <div class="card-row">
+            <div class="card-description textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)">Beschreibung der Karte</div>
+        </div>
+        </div>
+    </div>
+    <div id="cardprototype-pf2" class="card pf2 prototype">
+        <div class="card-toolbar card-row">
+            <button class="remove-card">Remove</button>
+            <button class="export-card">Export</button>
+            <button class="clone-card">Clone</button>
+        </div>
+        <div class="card-row">
+            <div class="card-title textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)">CARD TITLE</div>
+            <div class="card-level-label">Item</div>
             <div class="card-level textfield" contenteditable="true" onfocus="startEditing(this)" onblur="formatInput(this)">1+</div>
         </div>
         <div class="card-row card-tags" contenteditable="true" onfocus="startEditingTags(this)" onblur="stopEditingTags(this)">
             <div class="trait">Magical</div>
         </div>
         <div class="card-row card-infobar">
-            <div class="card-meta-data textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)"><b>Activation:</b> 1 Operate Activation <b>Bulk:</b> 1</div>
+            <div class="card-meta-data textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)"><b>Activate:</b> 1 Interact <b>Bulk:</b> 1</div>
         </div>
         <div class="card-row">
             <div class="card-description textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)">Beschreibung der Karte</div>

@@ -22,17 +22,18 @@ div.textfield {
     grid-template-columns: auto auto;
 }
 
-#cardprototype {
+#fileSelector {
     display: none;
 }
 
-#fileSelector {
+.prototype {
     display: none;
 }
 
 .card-title {
     flex: 2;
-    /*text-transform: uppercase;*/
+}
+.pf2 .card-title {
     font-variant: small-caps;
 }
 
@@ -41,11 +42,11 @@ div.textfield {
     /*border-top: 1px solid black;*/
 }
 
-.card-level {
+.pf2 > .card-level {
     text-align: right;
 }
 
-.card-tags {
+.pf2 > .card-tags {
     font-variant: small-caps;
     /*margin-left: -0.5em;
     border-radius: 5px;
@@ -72,12 +73,44 @@ div.textfield {
 
 .card-description {
     width: 100%;
-
 }
 
-.card-level-label {
+.pf2 .card-level-label {
+    font-variant: small-caps;
     border-width: 0;
     padding: 5px;
+}
+
+.filler-cell {
+    width: 100%;
+}
+
+.dd5 .trait {
+    font-style: italic;
+}
+.dd5 .trait:after {
+    white-space: pre;
+    content: ", ";
+}
+.dd5 .trait:last-child:after {
+    content: "" !important;
+}
+
+.pf2 .trait {
+    border: 1px solid black;
+    margin: 3px;
+    padding: 2px;
+    background-color: #a7f1a7;
+}
+
+.pf2 .rarity-uncommon {
+    background-color: #ffa500 !important;
+}
+.pf2 .rarity-rare {
+    background-color: #9090ee !important;
+}
+.pf2 .rarity-unique {
+    background-color: #ed91ed !important;
 }
 
 table {
@@ -112,33 +145,12 @@ table.inventory-extra-large td {
     height: 40em;
 }
 
-.filler-cell {
-    width: 100%;
-}
-
-.trait {
-    border: 1px solid black;
-    margin: 3px;
-    padding: 2px;
-    background-color: #a7f1a7;
-}
-
-.rarity-uncommon {
-    background-color: #ffa500 !important;
-}
-.rarity-rare {
-    background-color: #9090ee !important;
-}
-.rarity-unique {
-    background-color: #ed91ed !important;
-}
-
 @media screen {
-    button {
+    button, select {
         border-width: 0;
         background-color: #90ee90;
     }
-    button:hover {
+    button:hover, select:hover {
         background-color: #d3f8d3;
     }
 
@@ -151,6 +163,10 @@ table.inventory-extra-large td {
     }
 
     button.export-card {
+    }
+
+    select {
+        float: right;
     }
 
     .card {
@@ -207,7 +223,7 @@ table.inventory-extra-large td {
     body {
         font-size: 11pt;
     }
-    button {
+    button, select {
         display: none;
     }
 
