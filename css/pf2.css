@@ -1,0 +1,47 @@
+/* Colors
+As hex codes */
+.color-normal { background-color: #90ee90; }
+.color-dark { background-color: #1aa51a; }
+.color-light {background-color: #a7f1a7; }
+.color-very-light { background-color: #d3f8d3; }
+
+.pf2 .card-title {
+    font-variant: small-caps;
+}
+
+.pf2 > .card-level {
+    text-align: right;
+}
+
+.pf2 > .card-tags {
+    font-variant: small-caps;
+    /*margin-left: -0.5em;
+    border-radius: 5px;
+    z-index: 5;
+    background-color: #a7f1a7;
+    border: 1px solid #1aa51a;
+    box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.2), 0 4px 2px 0 rgba(0, 0, 0, 0.19);*/
+}
+
+.pf2 .card-level-label {
+    font-variant: small-caps;
+    border-width: 0;
+    padding: 5px;
+}
+
+.pf2 .trait {
+    border: 1px solid black;
+    margin: 3px;
+    padding: 2px;
+    background-color: #a7f1a7;
+}
+
+.pf2 .rarity-uncommon {
+    background-color: #ffa500 !important;
+}
+.pf2 .rarity-rare {
+    background-color: #9090ee !important;
+}
+.pf2 .rarity-unique {
+    background-color: #ed91ed !important;
+}

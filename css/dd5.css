@@ -1,0 +1,17 @@
+/* Colors
+As hex codes */
+.color-normal { background-color: #90ee90; }
+.color-dark { background-color: #1aa51a; }
+.color-light {background-color: #a7f1a7; }
+.color-very-light { background-color: #d3f8d3; }
+
+.dd5 .trait {
+    font-style: italic;
+}
+.dd5 .trait:after {
+    white-space: pre;
+    content: ", ";
+}
+.dd5 .trait:last-child:after {
+    content: "" !important;
+}
