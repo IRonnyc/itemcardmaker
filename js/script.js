@@ -188,7 +188,7 @@ function startEditingTags(elem) {
         console.log(children[i]);
         text += children[i].innerHTML;
         if (i < children.length -1) {
-            text += ", ";
+            text += "; ";
         }
     }
 
@@ -202,7 +202,7 @@ let specialTagClasses = new Map ([
     ['Unique', 'rarity-unique']
 ]);
 function stopEditingTags(elem) {
-    let tags = elem.innerHTML.split(",");
+    let tags = elem.innerHTML.split(";");
     let html = "";
 
     tags.forEach(function(e) {
