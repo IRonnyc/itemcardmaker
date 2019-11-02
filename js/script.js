@@ -23,6 +23,12 @@ function wireCardButtons(card) {
     card.querySelector(".export-card").onclick = function() {exportCard(card);};
     card.querySelector(".clone-card").onclick = function() {cloneCard(card);};
 
+    card.querySelector(".increase-row-span").onclick = function() {changeRowSpan(card, 1)};
+    card.querySelector(".decrease-row-span").onclick = function() {changeRowSpan(card, -1)};
+    card.querySelector(".double-col-card").onclick = function() {toggleDoubleColumnCard(card)};
+
+    card.querySelector(".move-forward-in-order").onclick = function () {moveInOrder(card, -1)};
+    card.querySelector(".move-backward-in-order").onclick = function () {moveInOrder(card, 1)};
 }
 
 function removeCard(item) {
@@ -64,6 +70,40 @@ function cloneCard(item) {
     let clone = item.cloneNode(true);
     wireCardButtons(clone);
     item.parentNode.appendChild(clone);
+}
+
+function changeRowSpan(item, diff) {
+    let rows = (parseInt(item.style.gridRow.replace("span ", "")) || 0);
+    if (rows <= 1) {
+        rows = 1;
+        if (diff > 0) {
+            rows += diff;
+        }
+    } else {
+        rows += diff;
+    }
+
+    item.style.gridRow = "span " + rows;
+}
+
+function toggleDoubleColumnCard(item) {
+    item.classList.toggle("double-col");
+}
+
+function moveInOrder(item, direction) {
+    let parentChildrenLength = item.parentNode.children.length;
+    for (let i = 0; i < parentChildrenLength; i++) {
+        if (item.parentNode.children[i] == item) {
+            let other = i + direction;
+            if (other < 0){
+                other = 0;
+            }
+            else if (other >= parentChildrenLength) {
+                other = parentChildrenLength - 1;
+            }
+            item.parentNode.insertBefore(item, item.parentNode.children[other]);
+        }
+    }
 }
 
 function createCard(stringData) {

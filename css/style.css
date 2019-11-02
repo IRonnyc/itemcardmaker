@@ -58,6 +58,14 @@ div.textfield {
     width: 100%;
 }
 
+.double-row {
+    grid-row: span 2;
+}
+
+.double-col {
+    grid-column: span 2;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
