@@ -182,6 +182,7 @@ table.inventory-extra-large td {
 
     .card {
         page-break-after: auto;
+        page-break-inside: avoid;
     }
 
     .card-toolbar, #help {

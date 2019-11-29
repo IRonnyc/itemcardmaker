@@ -1,2 +1,2 @@
 # itemcardmaker
-Website to create item cards (initially to look like the item block from the Pathfinder 2 Playtest)
+Website to create item cards for Pathfinder 2nd Edition and Dungeons and Dragons 5th Edition
