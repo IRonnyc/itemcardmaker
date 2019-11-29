@@ -45,7 +45,7 @@ function startEditingTags(elem) {
         console.log(children[i]);
         text += children[i].innerHTML;
         if (i < children.length -1) {
-            text += ", ";
+            text += "; ";
         }
     }
 
