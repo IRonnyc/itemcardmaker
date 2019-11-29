@@ -60,7 +60,7 @@ let specialTagClasses = new Map ([
 ]);
 
 function stopEditingTags(elem) {
-    let tags = elem.innerHTML.split(",");
+    let tags = elem.innerHTML.split(";");
     let html = "";
 
     tags.forEach(function(e) {
