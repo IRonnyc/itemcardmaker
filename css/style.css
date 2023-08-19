@@ -99,6 +99,11 @@ table.inventory-extra-large td {
 }
 
 @media screen {
+    body {
+        background-color: #333;
+        color: #eee;
+    }
+
     button, select {
         border-width: 0;
         background-color: #90ee90;
@@ -127,7 +132,7 @@ table.inventory-extra-large td {
     }
 
     .card-toolbar {
-        background-color: black;
+        background-color: #010105;
     }
 
     #help {
