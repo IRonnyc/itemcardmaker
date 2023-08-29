@@ -1,29 +1,30 @@
-function addCard() {
-    let container = document.getElementById("cardcontainer");
+function wireCardStyler(card) {
+    let cardBorderStyler = card.querySelector(".card-border-styler");
+    let cardBorderSize = cardBorderStyler.querySelector(".border-size");
+    let cardBorderColor = cardBorderStyler.querySelector(".border-color");
 
-    let prototype = document.getElementById("cardprototype-" + getSysteme());
-    let clone = prototype.cloneNode(true);
-    clone.removeAttribute("id");
-    clone.classList.remove("prototype");
-    // wire up remove button
-    wireCardButtons(clone);
-
-    container.appendChild(clone);
-    console.log("created card");
-    return clone;
+    cardBorderStyler.onchange = function() { changeCardBorder(card, cardBorderSize, cardBorderColor); };
 }
 
 function wireCardButtons(card) {
-    card.querySelector(".remove-card").onclick = function() {removeCard(card);};
-    card.querySelector(".export-card").onclick = function() {exportCard(card);};
-    card.querySelector(".clone-card").onclick = function() {cloneCard(card);};
+    card.querySelector(".remove-card").onclick = function() { removeCard(card); };
+    card.querySelector(".export-card").onclick = function() { exportCard(card); };
+    card.querySelector(".clone-card").onclick = function() { cloneCard(card); };
 
-    card.querySelector(".increase-row-span").onclick = function() {changeRowSpan(card, 1)};
-    card.querySelector(".decrease-row-span").onclick = function() {changeRowSpan(card, -1)};
-    card.querySelector(".double-col-card").onclick = function() {toggleDoubleColumnCard(card)};
+    card.querySelector(".increase-row-span").onclick = function() { changeRowSpan(card, 1) };
+    card.querySelector(".decrease-row-span").onclick = function() { changeRowSpan(card, -1) };
+    card.querySelector(".double-col-card").onclick = function() { toggleDoubleColumnCard(card) };
 
-    card.querySelector(".move-forward-in-order").onclick = function () {moveInOrder(card, -1)};
-    card.querySelector(".move-backward-in-order").onclick = function () {moveInOrder(card, 1)};
+    card.querySelector(".move-forward-in-order").onclick = function () { moveInOrder(card, -1) };
+    card.querySelector(".move-backward-in-order").onclick = function () { moveInOrder(card, 1) };
+}
+
+function changeCardBorder(item, size, color) {
+    console.log(item);
+    console.log(size);
+    console.log(item.style.border);
+
+    item.style.border = size.value + "px solid " + color.value;
 }
 
 function removeCard(item) {
@@ -65,6 +66,46 @@ function cloneCard(item) {
     let clone = item.cloneNode(true);
     wireCardButtons(clone);
     item.parentNode.appendChild(clone);
+}
+
+function changeRowSpan(item, diff) {
+    let rows = (parseInt(item.style.gridRow.replace("span ", "")) || 0);
+    if (rows <= 1) {
+        rows = 1;
+        if (diff > 0) {
+            rows += diff;
+        }
+    } else {
+        rows += diff;
+    }
+
+    item.style.gridRow = "span " + rows;
+}
+
+function toggleDoubleColumnCard(item) {
+    item.classList.toggle("double-col");
+}
+
+function moveInOrder(item, direction) {
+    let parentChildrenLength = item.parentNode.children.length;
+    let prototypes = getNumberOfPrototypesIn(item.parentNode.children);
+    for (let i = 0; i < parentChildrenLength; i++) {
+        if (item.parentNode.children[i] == item) {
+            let other = i + direction;
+            if (direction > 0) { // if direction > 0
+                other++; // insert after
+            }
+
+            if (other <= prototypes){
+                other = prototypes;
+            }
+            else if (other > parentChildrenLength) {
+                other = parentChildrenLength - 1;
+            }
+            item.parentNode.insertBefore(item, item.parentNode.children[other]);
+            break;
+        }
+    }
 }
 
 function createCard(stringData) {

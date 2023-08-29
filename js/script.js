@@ -1,3 +1,18 @@
+function addCard() {
+    let container = document.getElementById("cardcontainer");
+
+    let prototype = document.getElementById("cardprototype-" + getSysteme());
+    let clone = prototype.cloneNode(true);
+    clone.removeAttribute("id");
+    clone.classList.remove("prototype");
+    // wire up events and buttons
+    wireCardStyler(clone);
+    wireCardButtons(clone);
+
+    container.appendChild(clone);
+    console.log("created card");
+    return clone;
+}
 
 function getSysteme() {
     return document.getElementById("systemselector").value;
@@ -12,46 +27,6 @@ function getNumberOfPrototypesIn(array) {
             count++;
         } else {
             return count;
-        }
-    }
-}
-
-function changeRowSpan(item, diff) {
-    let rows = (parseInt(item.style.gridRow.replace("span ", "")) || 0);
-    if (rows <= 1) {
-        rows = 1;
-        if (diff > 0) {
-            rows += diff;
-        }
-    } else {
-        rows += diff;
-    }
-
-    item.style.gridRow = "span " + rows;
-}
-
-function toggleDoubleColumnCard(item) {
-    item.classList.toggle("double-col");
-}
-
-function moveInOrder(item, direction) {
-    let parentChildrenLength = item.parentNode.children.length;
-    let prototypes = getNumberOfPrototypesIn(item.parentNode.children);
-    for (let i = 0; i < parentChildrenLength; i++) {
-        if (item.parentNode.children[i] == item) {
-            let other = i + direction;
-            if (direction > 0) { // if direction > 0
-                other++; // insert after
-            }
-
-            if (other <= prototypes){
-                other = prototypes;
-            }
-            else if (other > parentChildrenLength) {
-                other = parentChildrenLength - 1;
-            }
-            item.parentNode.insertBefore(item, item.parentNode.children[other]);
-            break;
         }
     }
 }
