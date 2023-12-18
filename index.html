@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/dd5.css">
     <link rel="stylesheet" href="css/pf2.css">
     <script src="js/cards.js"></script>
+    <script src="js/permanency.js"></script>
     <script src="js/formatting.js"></script>
     <script src="js/script.js"></script>
 </head>
@@ -33,7 +34,7 @@ large inventory table: {Linventory}<br>
 extra large inventory table: {XLinventory}<br>
         </span>
     </div>
-    <select id="systemselector">
+    <select id="systemselector" onchange="saveSystem(this)">
         <option value="dd5">D&D 5e</option>
         <option value="pf2">Pathfinder 2e</option>
     </select>
@@ -73,6 +74,18 @@ extra large inventory table: {XLinventory}<br>
         </div>
     </div>
     <div id="cardprototype-pf2" class="card pf2 prototype">
+        <div class="card-border-styler card-row">
+            Border Size:
+            <select class="border-size">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            &ThickSpace;Border Color:
+            <input type="color" class="border-color" />
+        </div>
         <div class="card-toolbar card-row">
             <button class="remove-card">Remove</button>
             <button class="export-card">Export</button>
@@ -91,8 +104,12 @@ extra large inventory table: {XLinventory}<br>
         <div class="card-row card-tags" contenteditable="true" onfocus="startEditingTags(this)" onblur="stopEditingTags(this)">
             <div class="trait">Magical</div>
         </div>
+        <div class="card-row card-price">
+            <div class="card-price-label textfield"><b>Price:</b></div><div class="card-price-field textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)">1gp</div>
+        </div>
         <div class="card-row card-infobar">
-            <div class="card-meta-data textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)"><b>Activate:</b> 1 Interact <b>Bulk:</b> 1</div>
+            <div class="card-usage-label textfield"><b>Usage:</b></div><div class="card-usage textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)">held in 1 Hand</div>
+            <div class="card-bulk-label textfield"><b>Bulk:</b></div><div class="card-bulk textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)">1</div>
         </div>
         <div class="card-row">
             <div class="card-description textfield" contenteditable="true" onfocus="startEditing(this)" onblur="stopEditing(this)">Beschreibung der Karte</div>
