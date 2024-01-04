@@ -11,7 +11,6 @@
     <script src="js/cards.js"></script>
     <script src="js/permanency.js"></script>
     <script src="js/formatting.js"></script>
-    <script src="js/script.js"></script>
 </head>
 <body>
 
@@ -19,7 +18,7 @@
     <button id="addcard" onclick="addCard()">Add New Card</button>
     <button id="loadcard" onclick="loadCard()">Load Card</button>
     <input type="file" id="fileSelector" multiple="multiple">
-    <div id="help" onclick="togglePopup(this, '#help-text')"><button>Show Help</button>
+    <div id="help" onclick="this.querySelector('#help-text').classList.toggle('show');"><button>Show Help</button>
         <span id="help-text">
 <h3><b>Bold font:</b></h3> *bold*<br>
 <h3><i>Italic font:</i></h3> _italic_<br>
@@ -32,6 +31,8 @@ small inventory table: {Sinventory}<br>
 medium inventory table: {Minventory}<br>
 large inventory table: {Linventory}<br>
 extra large inventory table: {XLinventory}<br>
+<h3>Other Placeholders:</h3>
+charge tracker (<input type="checkbox" class="charge-tracker">): {C}
         </span>
     </div>
     <select id="systemselector" onchange="saveSystem(this)">

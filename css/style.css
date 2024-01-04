@@ -1,9 +1,20 @@
 /* Colors
 As hex codes */
-.color-normal { background-color: #90ee90; }
-.color-dark { background-color: #1aa51a; }
-.color-light {background-color: #a7f1a7; }
-.color-very-light { background-color: #d3f8d3; }
+.color-normal {
+    background-color: #90ee90;
+}
+
+.color-dark {
+    background-color: #1aa51a;
+}
+
+.color-light {
+    background-color: #a7f1a7;
+}
+
+.color-very-light {
+    background-color: #d3f8d3;
+}
 
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -71,17 +82,24 @@ table {
     border-collapse: collapse;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid black;
 }
 
 
-table.inventory-small th:last-child, table.inventory-small td:last-child,
-table.inventory th:last-child, table.inventory td:last-child,
-table.inventory-large th:last-child, table.inventory-large td:last-child,
-table.inventory-extra-large th:last-child, table.inventory-extra-large td:last-child {
+table.inventory-small th:last-child,
+table.inventory-small td:last-child,
+table.inventory th:last-child,
+table.inventory td:last-child,
+table.inventory-large th:last-child,
+table.inventory-large td:last-child,
+table.inventory-extra-large th:last-child,
+table.inventory-extra-large td:last-child {
     width: 3em;
 }
+
 table.inventory-small td {
     height: 10em;
 }
@@ -98,17 +116,55 @@ table.inventory-extra-large td {
     height: 40em;
 }
 
+input[type=checkbox].charge-tracker {
+    position: relative;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+input[type=checkbox].charge-tracker:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    border: 2px solid #555555;
+    border-radius: 2px;
+    background-color: white;
+}
+
+input[type=checkbox].charge-tracker:checked:after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 10px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 6px;
+}
+
 @media screen {
     body {
         background-color: #333;
         color: #eee;
     }
 
-    button, select {
+    button,
+    select {
         border-width: 0;
         background-color: #90ee90;
     }
-    button:hover, select:hover {
+
+    button:hover,
+    select:hover {
         background-color: #d3f8d3;
     }
 
@@ -120,8 +176,7 @@ table.inventory-extra-large td {
         background-color: #f8d3d3 !important;
     }
 
-    button.export-card {
-    }
+    button.export-card {}
 
     select {
         float: right;
@@ -133,6 +188,10 @@ table.inventory-extra-large td {
 
     .card-toolbar {
         background-color: #010105;
+    }
+
+    .card-toolbar>button {
+        border: 1px solid black;
     }
 
     #help {
@@ -173,8 +232,13 @@ table.inventory-extra-large td {
     }
 
     @keyframes fadeIn {
-        from {opacity: 0;}
-        to {opacity:1 ;}
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
 }
 
@@ -182,7 +246,9 @@ table.inventory-extra-large td {
     body {
         font-size: 11pt;
     }
-    button, select {
+
+    button,
+    select {
         display: none;
     }
 
@@ -191,7 +257,9 @@ table.inventory-extra-large td {
         page-break-inside: avoid;
     }
 
-    .card-toolbar, #help, .card-border-styler {
+    .card-toolbar,
+    #help,
+    .card-border-styler {
         display: none;
     }
 }
